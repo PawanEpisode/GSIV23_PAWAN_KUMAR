@@ -1,0 +1,14 @@
+.movie-footer {
+    margin-top: 40px;
+    background-color: #fff3f4;
+}
+
+.footer-container {
+    gap: 40px;
+    align-items: center;
+    padding: 24px 40px 0 40px;
+}
+
+.footer-text {
+    margin-bottom: 20px;
+}
