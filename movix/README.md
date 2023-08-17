@@ -6,6 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installing all the dependencies of the app in the development mode.\
+
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -14,57 +19,67 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Implementation 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In the Project implementation, following dependencies are available :\
 
-### `npm run build`
+"dependencies": {\
+    "@emotion/react": "^11.11.1",\
+    "@emotion/styled": "^11.11.0",\
+    "@mui/icons-material": "^5.14.3",\
+    "@mui/material": "^5.14.4",\
+    "@reduxjs/toolkit": "^1.9.5",\
+    "@testing-library/jest-dom": "^5.17.0",\
+    "@testing-library/react": "^13.4.0",\
+    "@testing-library/user-event": "^13.5.0",\
+    "react": "^18.2.0",\
+    "react-dom": "^18.2.0",\
+    "react-redux": "^8.1.2",\
+    "react-router-dom": "^6.15.0",\
+    "react-scripts": "5.0.1",\
+    "redux": "^4.2.1",\
+    "sass": "^1.65.1",\
+    "web-vitals": "^2.1.4"\
+  },\
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Overview
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This app contains feature to showcase all the upcoming movies in the Home Page Section.\
+User can scroll again and again to view more movies in this Home Page Section.\
+User can search for a specific movie using the searchbar at the top of the page(navbar).\
+User can view the details of movies by clicking on the movie card, a new movie detail page appears.\
+Movie detail page consist of details about the movies like :\
+a. Movie Title\
+b. Rating (average vote)\
+c. Year of release\
+d. Length (HH:MM)\
+e. Director\
+f. Cast (Comma separated list of actors)\
+g. Description\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+User can view this application also on mobile as it is fully responsive.\
 
-### `npm run eject`
+### Components & Hooks
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This App used Material UI library for css styling and using the predefined components which are very easy to integrate.\
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Components are :-\ 
+a. Footer : Used as a footer for both pages, home page & movie detail page\
+b. Loader: Used when fetching movies using API acting as a loading statement\
+c. NotFound: it is used when a movie is not found\
+d. Skeleton: used when data is fetching and showing the loading indicator\
+e. MovieCard: used to display a single card for a single movie\
+f. MovieList: Used to wrap all the movie cards\
+g. Navbar: used at the top of home page section\
+h. SearchComponent: used in Navbar as a movie search field\
+i. SearchedMovie: used when searching any movie in searchbar, displaying in home page\
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Hooks are :- \
+a. usePrevious: getting the previous value of search\
+b. useCurrentPath: getting the current path\
+c. UseDebounce: debouncing the search value\
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

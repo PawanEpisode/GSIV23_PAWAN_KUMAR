@@ -36,7 +36,7 @@ const MovieDetails = () => {
 
   const getRating = (vote_average) => {
     if (vote_average === 0) {
-      return "( Not Yet Rated )";
+      return "(Not Yet Rated)";
     }
     return (
       <Stack direction={"row"}>

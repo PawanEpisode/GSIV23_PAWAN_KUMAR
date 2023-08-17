@@ -7,12 +7,14 @@ import Home from "./pages/Home/Home";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
 
 import "./App.scss";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const [search, setSearch] = useState("");
   
   return (
-    <div className="movie-App">
+    <>
+      <div className="movie-App">
       <Navbar
           search={search}
           setSearch={setSearch}
@@ -26,10 +28,11 @@ function App() {
             }
           />
           <Route path="/movieapp/movie/:id" element={<MovieDetails />} />
-          <Route path="/*" element={<h1>Error Page</h1>} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
-      <Footer />
     </div>
+    <Footer />
+    </>
   );
 }
 

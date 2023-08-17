@@ -9,7 +9,7 @@ import { customAPI, customUrlMovieDB } from "../../utility/constants";
 
 import "./MovieList.css";
 
-const MovieList = ({ search }) => {
+const MovieList = () => {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
 
@@ -30,7 +30,6 @@ const MovieList = ({ search }) => {
       setCategoryMovieList([...categoryMovieList, ...latestMovies]);
       dispatch(setMovies([...categoryMovieList, ...latestMovies]));
       setPage((prevPage) => prevPage + 1);
-      console.log("Upcoming movies", latestMovies);
     } catch (error) {
       console.log(`error : ${error}`);
       setError(error);
@@ -47,7 +46,6 @@ const MovieList = ({ search }) => {
     ) {
       return;
     }
-    console.log("handleScroll");
     fetchMovieList();
     window.scrollTo(0, document.documentElement.offsetHeight - 200);
   };
@@ -58,7 +56,6 @@ const MovieList = ({ search }) => {
   }, [isLoading]);
 
   useEffect(() => {
-    console.log("useeffect");
     fetchMovieList();
   }, []);
 

@@ -9,7 +9,7 @@ import useCurrentPath from "../../hooks/useCurrentPath";
 const Navbar = ({ search, setSearch }) => {
   const currentPath = useCurrentPath();
   const hasId = (currentPath ?? "").includes("id");
-  console.log("id", currentPath, hasId, window.location.href);
+  
   return (
     <Stack className={`header${hasId ? "-hide" : ""}`}>
       <Stack className="header-left">

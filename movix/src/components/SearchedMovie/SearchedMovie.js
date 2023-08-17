@@ -5,12 +5,21 @@ import { getLatestMovies } from "../../utility/helper";
 import { customAPI, customUrlMovieDB } from "../../utility/constants";
 
 import "./SearchedMovie.css";
+import Loader from "../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
+import usePrevious from "../../hooks/usePrevious";
 
 const SearchedMovie = ({ search }) => {
+  const previousSearch = usePrevious(search);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+
+  const getPage = () => {
+    setPage(1);
+    return 1;
+  }
 
   const fetchMovie = async () => {
     if (search?.length) {
@@ -18,12 +27,14 @@ const SearchedMovie = ({ search }) => {
       setError(null);
       try {
         const movieList = await fetch(
-          `${customUrlMovieDB}/search/movie?${customAPI}&query=${search}&page=${page}`
+          `${customUrlMovieDB}/search/movie?${customAPI}&query=${search}&page=${search !== previousSearch ? getPage(): page}`
         );
         const response = await movieList.json();
         const latestMovies = getLatestMovies(response?.results ?? []);
-        setMovies([...movies, ...latestMovies]);
-        setPage((prevPage) => prevPage + 1);
+        search === previousSearch
+          ? setMovies([...movies, ...latestMovies])
+          : setMovies([...latestMovies]);
+        search === previousSearch && setPage((prevPage) => prevPage + 1);
       } catch (error) {
         console.log(`error: ${JSON.stringify(error)}`);
         setError(error);
@@ -34,7 +45,9 @@ const SearchedMovie = ({ search }) => {
   };
 
   useEffect(() => {
-    fetchMovie();
+    if(search !== previousSearch) {
+      fetchMovie();
+    }
   }, [search]);
 
   const handleScroll = () => {
@@ -45,8 +58,10 @@ const SearchedMovie = ({ search }) => {
     ) {
       return;
     }
-    fetchMovie();
-    window.scrollTo(0, document.documentElement.offsetHeight - 200);
+    if(search === previousSearch) {
+      window.scrollTo(0, document.documentElement.offsetHeight - 200);
+      fetchMovie();
+    }
   };
 
   useEffect(() => {
@@ -55,28 +70,39 @@ const SearchedMovie = ({ search }) => {
   }, [loading]);
 
   if (!search) {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
+  // Removing duplicacy
+  const MappedSearchedMovies = movies.reduce(
+    (acc, x) => acc.concat(acc.find((y) => y.id === x.id) ? [] : [x]),
+    []
+  );
   return (
     <>
-      <Stack className="searched-movielist-text-container">
-        <Typography variant="h3">{`${movies.length} Movies Found`}</Typography>
-      </Stack>
-      <Stack
-        className="searched-movielist-moviecard"
-        sx={{
-          gap: { lg: "50px", xs: "40px" },
-        }}
-      >
-        {movies?.map((movie, index) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </Stack>
-      <Stack>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
-      </Stack>
+      {MappedSearchedMovies.length ? (
+        <>
+          <Stack className="searched-movielist-text-container">
+            <Typography variant="h3">{`${MappedSearchedMovies.length} Movies Found`}</Typography>
+          </Stack>
+          <Stack
+            className="searched-movielist-moviecard"
+            sx={{
+              gap: { lg: "50px", xs: "40px" },
+            }}
+          >
+            {MappedSearchedMovies?.map((movie, index) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </Stack>
+          <Stack>
+            {loading && <Loader />}
+            {error && <p>Error: {error.message}</p>}
+          </Stack>
+        </>
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 };

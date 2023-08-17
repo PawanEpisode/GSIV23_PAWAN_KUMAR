@@ -24,7 +24,7 @@ const SearchComp = ({ search, setSearch }) => {
       <input
         value={search}
         className="search_input"
-        placeholder="Search Movie"
+        placeholder="Search..."
         onChange={handleSearch}
         maxLength={20}
       />
