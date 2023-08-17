@@ -3,11 +3,11 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import { Input } from "@mui/material";
 
 import "./SearchComp.scss";
 
 const SearchComp = ({ search, setSearch }) => {
+
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -15,20 +15,18 @@ const SearchComp = ({ search, setSearch }) => {
   const handleClose = () => {
     setSearch("");
   };
-  
+
   return (
-    <Paper
-      component="form"
-      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
-    >
+    <Paper className="search-container">
       <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
         <SearchIcon />
       </IconButton>
       <input
         value={search}
         className="search_input"
-        placeholder="Search Movie"
+        placeholder="Search..."
         onChange={handleSearch}
+        maxLength={20}
       />
       <IconButton
         onClick={handleClose}

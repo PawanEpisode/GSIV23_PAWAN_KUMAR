@@ -16,9 +16,15 @@
     -webkit-background-clip: text;
 }
 
+.header-hide {
+    display: none !important;
+}
+
 .header {
     @include header_display;
+    width: 100%;
     padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
     .header-left,.header-right {
         @include header_display;
@@ -31,6 +37,10 @@
             @include text-style;
         }
     }
+}
+
+.hide {
+    display: none;
 }
 
 

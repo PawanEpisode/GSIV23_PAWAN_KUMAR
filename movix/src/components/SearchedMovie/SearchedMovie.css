@@ -1,16 +1,16 @@
-.movielist-container {
+.searched-movielist-container {
   margin-top: 50px;
   padding: 20px;
 }
 
-.movielist-text-container {
+.searched-movielist-text-container {
   display: flex;
   margin-bottom: 30px;
   justify-content: center;
   align-items: center;
 }
 
-.movielist-moviecard {
+.searched-movielist-moviecard {
   display: flex;
   flex-direction: row !important;
   flex-wrap: wrap;
@@ -18,7 +18,7 @@
 }
 
 @media screen and (min-width: 1260px) {
-  .movielist-container {
+  .searched-movielist-container {
     margin-top: 30px;
   }
 }
